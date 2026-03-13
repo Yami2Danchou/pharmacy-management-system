@@ -68,48 +68,45 @@ export default function HomePage() {
               Streamline your pharmacy operations with our comprehensive management solution. 
               Track sales, monitor inventory, manage expirations, and generate reports with ease.
             </p>
-            <div className="flex justify-center space-x-4">
-              <Link
-                href="/login"
-                className="btn-primary text-lg px-8 py-3"
-              >
-                Start Free Trial
-              </Link>
-              <a
-                href="#features"
-                className="btn-secondary text-lg px-8 py-3"
-              >
-                Learn More
-              </a>
-            </div>
+            {/* Removed Start Free Trial and Learn More buttons */}
           </div>
 
           {/* Dashboard Preview */}
-          <div className="mt-20 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-3xl blur-3xl opacity-20"></div>
-            <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-              <img
-                src="/dashboard-preview.png"
-                alt="Dashboard Preview"
-                className="w-full h-auto"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  // Show a placeholder if image doesn't exist
-                  e.target.parentElement.innerHTML = `
-                    <div class="p-12 text-center">
-                      <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-8 rounded-2xl">
-                        <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <h3 class="text-2xl font-bold mb-2">Interactive Dashboard</h3>
-                        <p class="text-blue-100">Real-time analytics and insights at your fingertips</p>
-                      </div>
-                    </div>
-                  `;
-                }}
-              />
-            </div>
-          </div>
+<div className="mt-20 relative">
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-3xl blur-3xl opacity-20"></div>
+  <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+    {/* Always show placeholder first, image will load on top if available */}
+    <div className="p-12 text-center" id="dashboard-preview-container">
+      <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-8 rounded-2xl">
+        <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <h3 className="text-2xl font-bold mb-2">Interactive Dashboard</h3>
+        <p className="text-blue-100">Real-time analytics and insights at your fingertips</p>
+      </div>
+    </div>
+    
+    {/* Try to load the image, but it will be hidden by default */}
+    <img
+      src="/dashboard-preview.png"
+      alt="Dashboard Preview"
+      className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+      onLoad={(e) => {
+        // When image loads successfully, fade it in and hide the placeholder
+        e.target.style.opacity = '1';
+        const container = document.getElementById('dashboard-preview-container');
+        if (container) {
+          container.style.opacity = '0';
+        }
+      }}
+      onError={(e) => {
+        // If image fails to load, keep showing the placeholder
+        console.log('Dashboard preview image not found, showing placeholder');
+        e.target.style.display = 'none';
+      }}
+    />
+  </div>
+</div>
         </div>
       </div>
 
