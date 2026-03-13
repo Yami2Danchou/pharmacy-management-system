@@ -404,9 +404,9 @@ export default function HomePage() {
                 Contact
               </h4>
               <ul className="space-y-1 md:space-y-2 text-xs sm:text-sm text-gray-600">
-                <li>Isulan, Philippines</li>
-                <li>contact@labdrugpharmacy.com</li>
-                <li>+63 (XXX) XXX-XXXX</li>
+                <li>Purok 4, Barangay Biwang, Bagumbayan, Isulan, Sultan Kudarat, Philippines</li>
+                <li>labdrugpharma@gmail.com</li>
+                <li>09764299727</li>
               </ul>
             </div>
             <div>

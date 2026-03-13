@@ -93,16 +93,18 @@ async function createTables() {
     console.log('✓ customer table created');
 
     // Create User table
-    await sql`
-      CREATE TABLE IF NOT EXISTS "User" (
-        user_id SERIAL PRIMARY KEY,
-        username VARCHAR(255) NOT NULL UNIQUE,
-        password_hash VARCHAR(255) NOT NULL,
-        role VARCHAR(50) DEFAULT 'Cashier',
-        employee_id INTEGER NOT NULL REFERENCES Employee(employee_id),
-        is_active BOOLEAN DEFAULT true
-      );
-    `;
+   // Create User table
+await sql`
+  CREATE TABLE IF NOT EXISTS "User" (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) DEFAULT 'Cashier',
+    employee_id INTEGER NOT NULL REFERENCES Employee(employee_id),
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+`;
     console.log('✓ User table created');
 
     // Create Sale table
